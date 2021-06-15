@@ -1,41 +1,41 @@
-angular.module("getbookmarks.services", ["ngResource"]).
-    factory('Story', function ($resource) {
-        var Story = $resource('/api/v1/stories/:storyId', {storyId: '@id'});
-        Story.prototype.isNew = function(){
+angular.module("evcconfigurations.services", ["ngResource"]).
+    factory('Configuration', function ($resource) {
+        var Configuration = $resource('/api/v1/evcconfigurations/:configurationId', {configurationId: '@id'});
+        Configuration.prototype.isNew = function(){
             return (typeof(this.id) === 'undefined');
         }
-        return Story;
+        return Configuration;
     });
 
-angular.module("getbookmarks", ["getbookmarks.services"]).
+angular.module("evcconfigurations", ["evcconfigurations.services"]).
     config(function ($routeProvider) {
         $routeProvider
-            .when('/', {templateUrl: '/static/views/stories/list.html', controller: StoryListController})
-            .when('/stories/new', {templateUrl: '/static/views/stories/create.html', controller: StoryCreateController})
-            .when('/stories/:storyId', {templateUrl: '/static/views/stories/detail.html', controller: StoryDetailController});
+            .when('/', {templateUrl: '/static/views/configurations/list.html', controller: ConfigurationListController})
+            .when('/configurations/new', {templateUrl: '/static/views/configurations/create.html', controller: ConfigurationCreateController})
+            .when('/configurations/:configurationId', {templateUrl: '/static/views/configurations/detail.html', controller: ConfigurationDetailController});
     });
 
-function StoryListController($scope, Story) {
-    $scope.stories = Story.query();
+function ConfigurationListController($scope, Configuration) {
+    $scope.configurations = Configuration.query();
     
 }
 
-function StoryCreateController($scope, $routeParams, $location, Story) {
+function ConfigurationCreateController($scope, $routeParams, $location, Configuration) {
 
-    $scope.story = new Story();
+    $scope.configuration = new Configuration();
 
     $scope.save = function () {
-    	$scope.story.$save(function (story, headers) {
-    		toastr.success("Submitted New Story");
+    	$scope.configuration.$save(function (configuration, headers) {
+    		toastr.success("Submitted New Configuration");
             $location.path('/');
         });
     };
 }
 
 
-function StoryDetailController($scope, $routeParams, $location, Story) {
-    var storyId = $routeParams.storyId;
+function ConfigurationDetailController($scope, $routeParams, $location, Configuration) {
+    var configurationId = $routeParams.configurationId;
     
-    $scope.story = Story.get({storyId: storyId});
+    $scope.configuration = Configuration.get({configurationId: configurationId});
 
 }
