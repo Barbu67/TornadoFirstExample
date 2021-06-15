@@ -1,0 +1,23 @@
+<form novalidate class="form-horizontal" ng-submit="save()">
+	<div class="control-group">
+		<label class="control-label" for="url">Name</label>
+		<div class="controls">
+			<input type="url" ng-model="configuration.name" id="name" required/>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="title">Evc release</label>
+		<div class="controls">
+			<input type="text" ng-model="configuration.evcrelease" id="evcrelease" required/>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="firstName">SRS version</label>
+		<div class="controls">
+			<input type="text" ng-model="configuration.srsversion" id="srsversion" required/>
+		</div>
+	</div>
+	<div class="control-group">
+		<button id="save" class="btn btn-primary">Submit Configuration</button>
+	</div>
+</form>

@@ -1,0 +1,12 @@
+<h2>
+	Configurations <a class="btn btn-primary pull-right" href="#/configurations/new"><i
+		class="icon-plus-sign icon-white"></i> Submit New Configuration</a>
+</h2>
+
+<table class="table table-striped">
+	<tr ng-repeat="configuration in configurations">
+		<td><a href="#/evcconfigurations/{{configuration._id.$oid}}">{{configuration.name}}</a></td>
+		<td>{{configuration.evcrelease}}</td>
+		<td>{{configuration.srsversion}}</td>
+	</tr>
+</table>
