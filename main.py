@@ -1,5 +1,6 @@
 import os
 from tornado import ioloop,web
+from tornado.escape import json_encode
 from pymongo import MongoClient
 import json
 from bson import json_util
@@ -13,7 +14,8 @@ db = client[MONGODB_DB_NAME]
 
 class IndexHandler(web.RequestHandler):
     def get(self):
-        self.write("Tornado WebServer is running on the Mystery Machine")
+        #self.write("Tornado WebServer is running on the Mystery Machine")
+        self.render("index.html")
 
     def write_error(self, status_code, **kwargs):
         self.write("Ooops! You caused a %d error." % status_code)
